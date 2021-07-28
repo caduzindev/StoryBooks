@@ -1,3 +1,4 @@
+import { join } from 'path'
 import express from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
@@ -10,9 +11,12 @@ connectDB()
 
 const app = express()
 
+//Static folder
+app.use(express.static(join(__dirname,"public")))
+
 // View Engine
-app.engine('handlebars', exphbs({extname:'.hbs',defaultLayout:"main"}));
-app.set('view engine', 'handlebars');
+app.engine('.hbs', exphbs({extname:'.hbs',defaultLayout:"main"}));
+app.set('view engine', '.hbs');
 
 //logging
 if(process.env.NODE_ENV==="development"){
