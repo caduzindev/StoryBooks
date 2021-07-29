@@ -3,13 +3,29 @@ import express from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
 import exphbs from 'express-handlebars'
+import passport from 'passport'
+import session from 'express-session'
 import { connectDB } from './config/db'
 import routes from './routes'
+
 //config
 dotenv.config({path:"./config/config.env"})
 connectDB()
 
+// Passport
+
 const app = express()
+
+// Sessions
+app.use(session({
+    secret:'carlos',
+    resave:false,
+    saveUninitialized:false,
+}))
+
+// Passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
 
 //Static folder
 app.use(express.static(join(__dirname,"public")))
