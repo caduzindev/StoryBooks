@@ -7,6 +7,7 @@ import passport from 'passport'
 import session from 'express-session'
 import { connectDB } from './config/db'
 import routes from './routes'
+import routesAuth from './routes/auth'
 
 //config
 dotenv.config({path:"./config/config.env"})
@@ -41,7 +42,7 @@ if(process.env.NODE_ENV==="development"){
 
 //Routes
 app.use('/',routes)
-
+app.use('/auth',routesAuth)
 const PORT= process.env.PORT || 5000;
 
 app.listen(PORT,()=>{
