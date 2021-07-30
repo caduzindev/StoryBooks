@@ -1,5 +1,6 @@
 import express from 'express'
 import { Auth } from '../middleware/auth'
+import { User as UserInterface } from '../models/User'
 const router = express.Router()
 
 router.get('/',Auth.ensureGuest,(req,res)=>{
@@ -9,7 +10,10 @@ router.get('/',Auth.ensureGuest,(req,res)=>{
 })
 
 router.get('/dashboard',Auth.ensureAuth,(req,res)=>{
-    res.render('dashboard')
+    const user = <UserInterface>req.user
+    res.render('dashboard',{
+        name:user.firstName
+    })
 })
 
 export default router;

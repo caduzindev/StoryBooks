@@ -7,6 +7,7 @@ import morgan from 'morgan'
 import exphbs from 'express-handlebars'
 import passport from 'passport'
 import session from 'express-session'
+import MongoStore from 'connect-mongo'
 import { connectDB } from './config/db'
 import routes from './routes'
 import routesAuth from './routes/auth'
@@ -24,6 +25,9 @@ app.use(session({
     secret:'carlos',
     resave:false,
     saveUninitialized:false,
+    store:MongoStore.create({
+        mongoUrl:process.env.MONGO_URI
+    })
 }))
 
 // Passport middleware

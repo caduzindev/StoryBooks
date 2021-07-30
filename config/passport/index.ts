@@ -1,7 +1,7 @@
 import {PassportStatic} from 'passport'
 import User, { User as UserInterface } from '../../models/User';
 import GoogleStrategy from './GoogleStrategy'
-
+ 
 export const PassportConfig = (passportInstance:PassportStatic)=>{
     passportInstance.use(GoogleStrategy)
 
