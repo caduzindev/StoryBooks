@@ -13,9 +13,3 @@ export const PassportConfig = (passportInstance:PassportStatic)=>{
         User.findById(id,(err:Error,user:UserInterface)=>done(err,user))
     });
 }
-
-// export default {
-//     clientID:process.env.GOOGLE_CLIENT_ID,
-//     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-//     callbackURL: "http://localhost:3000/auth/google/callback"
-// }

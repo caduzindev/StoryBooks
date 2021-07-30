@@ -1,6 +1,8 @@
 import { join } from 'path'
-import express from 'express'
 import dotenv from 'dotenv'
+dotenv.config({path:join(__dirname,"config","config.env")})
+
+import express from 'express'
 import morgan from 'morgan'
 import exphbs from 'express-handlebars'
 import passport from 'passport'
@@ -8,12 +10,12 @@ import session from 'express-session'
 import { connectDB } from './config/db'
 import routes from './routes'
 import routesAuth from './routes/auth'
+import { PassportConfig } from './config/passport'
 
 //config
-dotenv.config({path:"./config/config.env"})
 connectDB()
-
 // Passport
+PassportConfig(passport)
 
 const app = express()
 
