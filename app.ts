@@ -14,6 +14,9 @@ import routesAuth from './routes/auth'
 import routesStory from './routes/story'
 import { PassportConfig } from './config/passport'
 
+//helpers
+import { formatDate } from './helpers/hbs'
+
 //config
 connectDB()
 // Passport
@@ -43,7 +46,15 @@ app.use(passport.session())
 app.use(express.static(join(__dirname,"public")))
 
 // View Engine
-app.engine('.hbs', exphbs({extname:'.hbs',defaultLayout:"main"}));
+app.engine('.hbs', exphbs(
+    {
+        extname:'.hbs',
+        defaultLayout:"main",
+        helpers:{
+            formatDate
+        }
+    }
+));
 app.set('view engine', '.hbs');
 
 //logging
