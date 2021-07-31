@@ -21,6 +21,10 @@ PassportConfig(passport)
 
 const app = express()
 
+// Body Parser
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
+
 // Sessions
 app.use(session({
     secret:'carlos',
