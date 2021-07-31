@@ -1,6 +1,7 @@
 import express from 'express'
 import { Auth } from '../middleware/auth'
-import User, { User as UserInterface } from '../models/User'
+import Story from '../models/Story'
+import { User as UserInterface } from '../models/User'
 const router = express.Router()
 
 router.get('/',Auth.ensureGuest,(req,res)=>{
@@ -13,7 +14,8 @@ router.get('/dashboard',Auth.ensureAuth,async (req,res)=>{
     const user = <UserInterface>req.user
 
     try{
-        const stories = await User.findById(user.id).populate('stories').lean()
+        const stories = await Story.find({author:user.id}).lean()
+
         res.render('dashboard',{
             name:user.firstName,
             stories
