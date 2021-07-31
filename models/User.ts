@@ -6,6 +6,7 @@ export interface User{
     displayName:string;
     firstName:string;
     image: string;
+    stories?:Array<{type:string,ref:string}>
     createdAt: Date;
 }
 
@@ -25,6 +26,12 @@ const UserSchema = new Schema<User>({
     image:{
         type: String
     },
+    stories:[
+        {
+            type:Schema.Types.ObjectId,
+            ref:"Story"
+        }
+    ],
     createdAt:{
         type: Date,
         default: Date.now()
