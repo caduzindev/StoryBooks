@@ -1,0 +1,29 @@
+<div class="row">
+    <form action="/stories" class="col s2" method="POST">
+        <div class="row">
+            <div class="input-field">
+                <input type="text" name="title" id="title">
+                <label for="title">Title</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field">
+                <select id="status" name="status">
+                    <option value="public" selected>Publico</option>
+                    <option value="private">Privado</option>
+                </select>
+                <label for="status">Status</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+            <input id="password" type="password" class="validate">
+            <label for="password">Password</label>
+        </div>
+        <div class="row">
+            <input type="submit" value="Salvar" class="btn">
+            <a href="/dashboard" class="btn orange">Cancelar</a>
+        </div>
+      </div>
+    </form>
+</div>

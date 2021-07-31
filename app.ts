@@ -11,6 +11,7 @@ import MongoStore from 'connect-mongo'
 import { connectDB } from './config/db'
 import routes from './routes'
 import routesAuth from './routes/auth'
+import routesStory from './routes/story'
 import { PassportConfig } from './config/passport'
 
 //config
@@ -49,6 +50,7 @@ if(process.env.NODE_ENV==="development"){
 //Routes
 app.use('/',routes)
 app.use('/auth',routesAuth)
+app.use('/stories',routesStory)
 const PORT= process.env.PORT || 5000;
 
 app.listen(PORT,()=>{
