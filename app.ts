@@ -15,7 +15,7 @@ import routesStory from './routes/story'
 import { PassportConfig } from './config/passport'
 
 //helpers
-import { formatDate } from './helpers/hbs'
+import { formatDate,stripTags,truncate } from './helpers/hbs'
 
 //config
 connectDB()
@@ -51,7 +51,9 @@ app.engine('.hbs', exphbs(
         extname:'.hbs',
         defaultLayout:"main",
         helpers:{
-            formatDate
+            formatDate,
+            stripTags,
+            truncate
         }
     }
 ));
