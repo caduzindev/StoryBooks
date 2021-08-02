@@ -36,4 +36,38 @@ router.get('/',async (req,res)=>{
     }
 })
 
+router.get('/edit/:id',Auth.ensureAuth,async (req,res)=>{
+    const user = <UserInterface>req.user 
+    const story = await Story.findOne({
+        _id:req.params.id
+    }).lean()
+
+    if(!story){
+        return res.render('error/404')
+    }
+    if(story.author != user.id){
+        res.redirect('/stories')
+    }else{
+        res.render('stories/edit',{
+            story
+        })
+    }
+})
+
+router.put('/:id',Auth.ensureAuth,async (req,res)=>{
+    const user = <UserInterface>req.user
+    let story = await Story.findById(req.params.id)
+
+    if(!story){
+        res.render('error/404')
+    }
+    if(story.author != user.id){
+        res.redirect('/stories')
+    }else{
+        res.render('stories/edit',{
+            story
+        })
+    }
+})
+
 export default router;

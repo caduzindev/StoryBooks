@@ -31,3 +31,16 @@ export const editIcon = (UserStory:StoryInterface,UserLogged:UserInterface,idSto
         return ''
     }
 }
+
+export const select = (selected:string,options:any)=>{
+    return options
+        .fn(this)
+        .replace(
+            new RegExp(' value="'+ selected + '"'),
+            '$& selected="selected"'
+        )
+        .replace(
+            new RegExp('>'+ selected + '</option>'),
+            ' selected="selected"$&'
+        )
+}

@@ -2,11 +2,11 @@ import { model,Schema } from 'mongoose'
 
 export interface Story{
     _id?:string
-    googleId: string;
-    displayName:string;
-    firstName:string;
-    image: string;
-    createdAt: Date;
+    title:string
+    body:string
+    status:string
+    author:string
+    createdAt:Date
 }
 
 const StorySchema = new Schema<Story>({

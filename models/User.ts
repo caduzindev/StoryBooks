@@ -1,7 +1,8 @@
 import { model,Schema } from 'mongoose'
 
 export interface User{
-    _id?:string
+    _id:string
+    id:string
     googleId: string;
     displayName:string;
     firstName:string;

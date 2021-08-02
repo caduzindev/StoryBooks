@@ -8,6 +8,7 @@ import exphbs from 'express-handlebars'
 import passport from 'passport'
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
+import methodOverride from 'method-override'
 import { connectDB } from './config/db'
 import routes from './routes'
 import routesAuth from './routes/auth'
@@ -15,7 +16,7 @@ import routesStory from './routes/story'
 import { PassportConfig } from './config/passport'
 
 //helpers
-import { formatDate,stripTags,truncate,editIcon } from './helpers/hbs'
+import { formatDate,stripTags,truncate,editIcon,select } from './helpers/hbs'
 
 //config
 connectDB()
@@ -47,6 +48,15 @@ app.use(function(req,res,next){
     next()
 })
 
+// Override
+app.use(methodOverride(function (req, res) {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    let method = req.body._method
+    delete req.body._method
+    return method
+  }
+}))
+
 //Static folder
 app.use(express.static(join(__dirname,"public")))
 
@@ -59,7 +69,8 @@ app.engine('.hbs', exphbs(
             formatDate,
             stripTags,
             truncate,
-            editIcon
+            editIcon,
+            select
         }
     }
 ));
