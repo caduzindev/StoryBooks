@@ -64,9 +64,11 @@ router.put('/:id',Auth.ensureAuth,async (req,res)=>{
     if(story.author != user.id){
         res.redirect('/stories')
     }else{
-        res.render('stories/edit',{
-            story
+        story = await Story.findOneAndUpdate({_id:req.params.id},req.body,{
+            new:true,
+            runValidators:true
         })
+        res.redirect('/dashboard')
     }
 })
 
