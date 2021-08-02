@@ -15,7 +15,7 @@ import routesStory from './routes/story'
 import { PassportConfig } from './config/passport'
 
 //helpers
-import { formatDate,stripTags,truncate } from './helpers/hbs'
+import { formatDate,stripTags,truncate,editIcon } from './helpers/hbs'
 
 //config
 connectDB()
@@ -42,6 +42,11 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use(function(req,res,next){
+    res.locals.user = req.user || null
+    next()
+})
+
 //Static folder
 app.use(express.static(join(__dirname,"public")))
 
@@ -53,7 +58,8 @@ app.engine('.hbs', exphbs(
         helpers:{
             formatDate,
             stripTags,
-            truncate
+            truncate,
+            editIcon
         }
     }
 ));

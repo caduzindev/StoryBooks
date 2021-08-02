@@ -1,7 +1,7 @@
 import { model,Schema } from 'mongoose'
 
 export interface Story{
-    id?:string
+    _id?:string
     googleId: string;
     displayName:string;
     firstName:string;

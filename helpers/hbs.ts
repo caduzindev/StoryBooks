@@ -1,4 +1,6 @@
 import moment from 'moment'
+import { Story as StoryInterface } from '../models/Story'
+import { User as UserInterface } from '../models/User'
 
 export const formatDate = (date:string,format:string)=>moment(date).format(format)
 
@@ -14,5 +16,18 @@ export const truncate = (str:string,len:number)=>{
 }
 
 export const stripTags = (data:string)=>{
+    console.log(data)
     return data.replace(/<(?:.|\n)*?>/gm,'')
+}
+
+export const editIcon = (UserStory:StoryInterface,UserLogged:UserInterface,idStory:string,floating=true)=>{
+    if(UserStory._id.toString() === UserLogged._id.toString() ){
+        if(floating){
+            return `<a href="/stories/edit/${idStory}" class="btn-floating halfway-fab blue"><i class="fas fa-edit"></i></a>`
+        }else{
+            return `<a href="/stories/edit/${idStory}"><i class="fas fa-edit"></i></a>`
+        }
+    }else{
+        return ''
+    }
 }
