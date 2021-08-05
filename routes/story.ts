@@ -1,13 +1,12 @@
 import express from 'express'
+import StoryController from '../app/controllers/Story'
 import { Auth } from '../middleware/auth'
 import Story from '../models/Story'
 import { User as UserInterface } from '../models/User'
 
 const router = express.Router()
 
-router.get('/add',Auth.ensureAuth,(req,res)=>{
-    res.render('stories/add')
-})
+router.get('/add',Auth.ensureAuth,StoryController.StoryRenderAdd.handle)
 
 router.post('/add',Auth.ensureAuth,async (req,res)=>{
     const user = <UserInterface>req.user 
