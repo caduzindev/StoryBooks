@@ -1,7 +1,7 @@
 import express from 'express'
 import { Auth } from '../middleware/auth'
-import Story from '../models/Story'
-import { User as UserInterface } from '../models/User'
+import DashboardController from '../app/controllers/Dashboard'
+
 const router = express.Router()
 
 router.get('/',Auth.ensureGuest,(req,res)=>{
@@ -10,20 +10,6 @@ router.get('/',Auth.ensureGuest,(req,res)=>{
     })
 })
 
-router.get('/dashboard',Auth.ensureAuth,async (req,res)=>{
-    const user = <UserInterface>req.user
-
-    try{
-        const stories = await Story.find({author:user.id}).lean()
-
-        res.render('dashboard',{
-            name:user.firstName,
-            stories
-        })
-    }catch(err){
-        console.error(err)
-        res.render('error/500')
-    }
-})
+router.get('/dashboard',Auth.ensureAuth,DashboardController.DashboardIndex.handle)
 
 export default router;
