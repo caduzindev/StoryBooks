@@ -15,8 +15,8 @@ export default {
     StoryAdd:new StoryAdd(service),
     StoryInitial: new StoryInitial(),
     StoryRenderEdit: new StoryRenderEdit(),
-    StoryEdit:new StoryEdit(),
-    StoryDelete: new StoryDelete(),
+    StoryEdit:new StoryEdit(service),
+    StoryDelete: new StoryDelete(service),
     StoryGet:new StoryGet(),
     StoryOfUser: new StoryOfUser()
 }
