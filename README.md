@@ -47,6 +47,7 @@ git clone https://github.com/caduzindev/StoryBooks.git
 ```bash
 cd StoryBooks/
 ```
+2. Agora va na pasta config e crie um arquivo chamado **config.env** com base no **config.example.env** e preencha com seus dados
 
 Inciando o server:
 
